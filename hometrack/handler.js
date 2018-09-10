@@ -13,7 +13,6 @@ module.exports.main = (event, context, callback) => {
             'Access-Control-Allow-Credentials': true,
         },
         auth: false, // exercise no need auth
-        param: event.queryString,
         method: event.httpMethod,
         statusCode: 200,
     };
@@ -24,11 +23,13 @@ module.exports.main = (event, context, callback) => {
             query.statusCode = 400;
 
             callback(null, defaultError(query));
+        }else{
+            filter(query,JSON.parse(event.body).payload,callback);
+
+        
         }
-
-        filter(query, event.body,callback);
-
-        return;
+return;
+        
     }
 
     callback(null, defaultError(query));
