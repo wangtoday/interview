@@ -23,13 +23,10 @@ module.exports.main = (event, context, callback) => {
             query.statusCode = 400;
 
             callback(null, defaultError(query));
-        }else{
-            filter(query,JSON.parse(event.body).payload,callback);
-
-        
+        } else {
+            filter(query, JSON.parse(event.body).payload, callback);
         }
-return;
-        
+        return;
     }
 
     callback(null, defaultError(query));
